@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe 'User' do
+RSpec.describe Like, type: :model do
 
   before do
     @user_1 = User.create(name: 'Tomasz')
