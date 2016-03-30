@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-
-  get 'friendship/create'
-  get 'friendship/destroy'
+  resources :users
+  resources :friendships, only: [:create, :destroy]
 
 end
