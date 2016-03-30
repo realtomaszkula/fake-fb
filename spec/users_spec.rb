@@ -8,7 +8,6 @@ describe 'User' do
   end
 
   it 'after sending friend request' do
-
     @user_1.friendships.create(friend_id: @user_2.id)
 
     expect { @user_2.received_friend_requests.size.to eql 1 }
