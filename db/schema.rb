@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330014032) do
+ActiveRecord::Schema.define(version: 20160330133738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "author"
+    t.integer  "parent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["author"], name: "index_comments_on_author", using: :btree
+  add_index "comments", ["parent"], name: "index_comments_on_parent", using: :btree
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +33,28 @@ ActiveRecord::Schema.define(version: 20160330014032) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "author"
+    t.integer  "parent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["author"], name: "index_likes_on_author", using: :btree
+  add_index "likes", ["parent"], name: "index_likes_on_parent", using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "author"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posts", ["author"], name: "index_posts_on_author", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

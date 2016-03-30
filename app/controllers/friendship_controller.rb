@@ -6,7 +6,4 @@ class FriendshipController < ApplicationController
   def destroy
   end
 
-  private
-
-
 end
