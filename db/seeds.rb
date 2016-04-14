@@ -15,3 +15,18 @@ end
     birthdate: Faker::Date.between(60.years.ago, 10.years.ago),
     gender: 'M'
     )
+
+
+    user = User.first
+    user5 = User.find(5)
+    admin = User.last
+
+  admin.friendships.create(friend_id: user.id)
+  admin.friendships.create(friend_id: 2)
+  admin.friendships.create(friend_id: 3)
+
+
+  user.friendships.create(friend_id: admin.id)
+  user5.friendships.create(friend_id: admin.id)
+
+  ## admin sent 3 reqests, one accepted, admin recieved one inv

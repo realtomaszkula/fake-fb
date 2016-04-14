@@ -5,14 +5,22 @@ class FriendshipsController < ApplicationController
 
     if @friendship.save
       flash[:notice] = "Friend request sent"
-      redirect_to root_url
+      redirect_to :back
     else
-      redirect_to root_url
       flash[:notice] = "Unable to add friend"
+      redirect_to :back
     end
   end
 
   def destroy
+    @friendship = current_user.friendships.find_by(friend_id: params[:id])
+    @friendship.destroy
+
+    user = User.find(params[:id])
+    @inverse_friendship = user.friendships.find_by(friend_id: current_user.id)
+    @inverse_friendship.destroy
+
+    redirect_to :back
   end
 
 end

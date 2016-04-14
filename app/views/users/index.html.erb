@@ -4,17 +4,7 @@
   <% @users.each do |user| %>
   <li>
     <%= link_to user.name, user_path(user) %>
-
-  <% if current_user.accepted_friendships.include?(user.id) %>
-    Remove friend
-  <% elsif  current_user.sent_friend_requests.include?(user.id) %>
-    Already sent friend request
-  <% elsif  current_user.received_friend_requests.include?(user.id) %>
-    Accept friend request
-  <% else %>
-    <%= link_to "Add friend", friendships_path(friend_id: user.id), :method => :post %>
-  <% end %>
-
+    <%= render partial: 'shared/add_friend', locals: { user: user } %>
   </li>
   <% end %>
 </ul>
