@@ -1,4 +1,4 @@
-200.times do
+20.times do
   User.create(
     name: Faker::Name.name,
     password: 'test12345',

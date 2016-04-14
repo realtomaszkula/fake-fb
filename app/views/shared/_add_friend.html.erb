@@ -1,10 +1,9 @@
   <% if current_user.accepted_friendships.include?(user.id) %>
-    Remove friend
     <%= link_to "Remove friend", friendship_path(id: user.id), :method => :delete %>
   <% elsif  current_user.sent_friend_requests.include?(user.id) %>
     Already sent friend request
   <% elsif  current_user.received_friend_requests.include?(user.id) %>
-    Accept friend request
+    <%= link_to "Accept friend request", friendships_path(friend_id: user.id), :method => :post %>
   <% else %>
     <%= link_to "Add friend", friendships_path(friend_id: user.id), :method => :post %>
   <% end %>
