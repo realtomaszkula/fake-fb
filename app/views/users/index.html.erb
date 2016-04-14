@@ -1,2 +1,20 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>Users</h1>
+
+<ul>
+  <% @users.each do |user| %>
+  <li>
+    <%= link_to user.name, user_path(user) %>
+
+  <% if current_user.accepted_friendships.include?(user.id) %>
+    Remove friend
+  <% elsif  current_user.sent_friend_requests.include?(user.id) %>
+    Already sent friend request
+  <% elsif  current_user.received_friend_requests.include?(user.id) %>
+    Accept friend request
+  <% else %>
+    Add friend
+  <% end %>
+
+  </li>
+  <% end %>
+</ul>

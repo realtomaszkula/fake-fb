@@ -19,15 +19,15 @@ class User < ActiveRecord::Base
   end
 
   def sent_friend_requests
-    Friendship.where(user_id: current_friends_ids).where.not(friend_id: id)
+    Friendship.where(user_id: current_friends_ids).where.not(friend_id: id).pluck(:user_id)
   end
 
   def received_friend_requests
-    Friendship.where(friend_id: id).where.not(user_id: current_friends_ids)
+    Friendship.where(friend_id: id).where.not(user_id: current_friends_ids).pluck(:user_id)
   end
 
   def accepted_friendships
-    Friendship.where(friend_id: id).where(user_id: current_friends_ids)
+    Friendship.where(friend_id: id).where(user_id: current_friends_ids).pluck(:user_id)
   end
 
 
