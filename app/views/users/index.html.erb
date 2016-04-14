@@ -12,7 +12,7 @@
   <% elsif  current_user.received_friend_requests.include?(user.id) %>
     Accept friend request
   <% else %>
-    Add friend
+    <%= link_to "Add friend", friendships_path(friend_id: user.id), :method => :post %>
   <% end %>
 
   </li>
