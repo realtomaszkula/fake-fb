@@ -22,12 +22,14 @@ class User < ActiveRecord::Base
     (Friendship.where(user_id: id).pluck(:friend_id) - accepted_friendships)
   end
 
-  def received_friend_requests
-    Friendship.where(friend_id: id).where.not(user_id: current_friends_ids).pluck(:user_id)
+  def received_friend_requests(id_only = true)
+    f = Friendship.where(friend_id: id).where.not(user_id: current_friends_ids)
+    id_only ? f.pluck(:user_id) : f
   end
 
-  def accepted_friendships
-    Friendship.where(friend_id: id).where(user_id: current_friends_ids).pluck(:user_id)
+  def accepted_friendships(id_only = true)
+    f = Friendship.where(friend_id: id).where(user_id: current_friends_ids)
+    id_only ?  f.pluck(:user_id) : f
   end
 
 

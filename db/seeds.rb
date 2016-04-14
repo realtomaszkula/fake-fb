@@ -18,6 +18,7 @@ end
 
 
     user = User.first
+    user2 = User.find(2)
     user5 = User.find(5)
     admin = User.last
 
@@ -27,6 +28,7 @@ end
 
 
   user.friendships.create(friend_id: admin.id)
+  user2.friendships.create(friend_id: admin.id)
   user5.friendships.create(friend_id: admin.id)
 
-  ## admin sent 3 reqests, one accepted, admin recieved one inv
+  ## admin sent 3 reqests, two accepted, admin recieved one inv

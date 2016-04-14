@@ -13,11 +13,11 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    if params.has_key?(:decline_only)
       user = User.find(params[:id])
       @inverse_friendship = user.friendships.find_by(friend_id: current_user.id)
       @inverse_friendship.destroy
-    else
+
+    unless params.has_key?(:decline_only)
       @friendship = current_user.friendships.find_by(friend_id: params[:id])
       @friendship.destroy
     end
