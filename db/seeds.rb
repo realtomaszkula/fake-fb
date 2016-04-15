@@ -42,5 +42,8 @@ end
         content: Faker::Hacker.say_something_smart
         )
     end
+    rand(1..20).times do
+      p.likes.create(author_id: rand(1..20))
+    end
   end
 
