@@ -18,14 +18,14 @@ ActiveRecord::Schema.define(version: 20160414142022) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
-    t.integer  "author"
-    t.integer  "parent"
+    t.integer  "author_id"
+    t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "comments", ["author"], name: "index_comments_on_author", using: :btree
-  add_index "comments", ["parent"], name: "index_comments_on_parent", using: :btree
+  add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
+  add_index "comments", ["parent_id"], name: "index_comments_on_parent_id", using: :btree
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -38,23 +38,23 @@ ActiveRecord::Schema.define(version: 20160414142022) do
   add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
 
   create_table "likes", force: :cascade do |t|
-    t.integer  "author"
-    t.integer  "parent"
+    t.integer  "author_id"
+    t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "likes", ["author"], name: "index_likes_on_author", using: :btree
-  add_index "likes", ["parent"], name: "index_likes_on_parent", using: :btree
+  add_index "likes", ["author_id"], name: "index_likes_on_author_id", using: :btree
+  add_index "likes", ["parent_id"], name: "index_likes_on_parent_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "content"
-    t.integer  "author"
+    t.integer  "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "posts", ["author"], name: "index_posts_on_author", using: :btree
+  add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

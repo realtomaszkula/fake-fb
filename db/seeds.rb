@@ -17,10 +17,10 @@ end
     )
 
 
-    user = User.first
-    user2 = User.find(2)
-    user5 = User.find(5)
-    admin = User.last
+  user = User.first
+  user2 = User.find(2)
+  user5 = User.find(5)
+  admin = User.last
 
   admin.friendships.create(friend_id: user.id)
   admin.friendships.create(friend_id: 2)
@@ -31,4 +31,4 @@ end
   user2.friendships.create(friend_id: admin.id)
   user5.friendships.create(friend_id: admin.id)
 
-  ## admin sent 3 reqests, two accepted, admin recieved one inv
+
