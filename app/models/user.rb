@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   has_many :posts, foreign_key: 'author_id'
-  has_many :comments
+  has_many :comments, foreign_key: 'author_id'
   has_many :likes
 
 

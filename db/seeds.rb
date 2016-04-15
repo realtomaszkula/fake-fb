@@ -9,7 +9,7 @@
 end
 
   User.create(
-    name: 'admin',
+    name: 'Tomasz Kula',
     password: 'password',
     email: 'test@test.pl',
     birthdate: Faker::Date.between(60.years.ago, 10.years.ago),
@@ -31,4 +31,16 @@ end
   user2.friendships.create(friend_id: admin.id)
   user5.friendships.create(friend_id: admin.id)
 
+  3.times do
+    admin.posts.create(content: Faker::Hacker.say_something_smart )
+  end
+
+  admin.posts.each do |p|
+    3.times do
+      p.comments.create(
+        author_id: rand(1..20),
+        content: Faker::Hacker.say_something_smart
+        )
+    end
+  end
 

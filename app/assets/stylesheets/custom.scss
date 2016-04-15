@@ -1,6 +1,6 @@
 $light-grey: #fafafa;
 $grey: #eee;
-
+$blue: #2e6da4;
 
 .spacer { margin-top: 50px; }
 
@@ -20,4 +20,8 @@ $grey: #eee;
    padding: 3px;
    margin: 3px;
    color: $grey
+ }
+
+ .blue {
+  color: $blue
  }

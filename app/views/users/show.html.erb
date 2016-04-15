@@ -20,7 +20,7 @@
 
   <div class='post'>
 
-      <p><%= p.author.name %></p>
+      <p class="blue"><strong><%= p.author.name %></strong></p>
       <hr>
       <p><%= p.content %></p>
 
@@ -32,10 +32,16 @@
   </div>
 
   <div class="comments">
-      <p><i class="glyphicon glyphicon-thumbs-up"></i> 21 osob lubi to.</p>
+      <p class="blue"><i class="glyphicon glyphicon-thumbs-up"></i> 21 osob lubi to.</p>
       <hr class="slim"></hr>
 
-
+    <% p.comments.each do |c| %>
+      <p><strong class="blue"><%= c.author.name %></strong> <%= c.content %> </p>
+<!--       <p>
+        <i class="glyphicon glyphicon-thumbs-up"></i> Lubie to!
+       <%= c.created_at %>
+      </p> -->
+    <% end %>
 
   </div>
 
