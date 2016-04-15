@@ -18,23 +18,28 @@
 
   <div class="spacer"></div>
 
-  <div class='panel panel-default'>
-    <div class="panel-body">
+  <div class='post'>
+
       <p><%= p.author.name %></p>
       <hr>
       <p><%= p.content %></p>
-      <hr>
 
-      <div class="btn-group" data-toggle="buttons-checkbox">
-              <div class="btn btn-small">
-                <i class="glyphicon glyphicon-thumbs-up"></i> Lubie to!
-              </div>
-              <div class="btn btn-small">
-                <i class="glyphicon glyphicon-envelope"></i> Skomentuj
-              </div>
+      <hr>
+      <div>
+        <i class="glyphicon glyphicon-thumbs-up"></i> Lubie to!
+        <i class="glyphicon glyphicon-envelope"></i> Skomentuj
       </div>
-    </div>
   </div>
+
+  <div class="comments">
+      <p><i class="glyphicon glyphicon-thumbs-up"></i> 21 osob lubi to.</p>
+      <hr class="slim"></hr>
+
+
+
+  </div>
+
+
 
   <% end %>
 </div>

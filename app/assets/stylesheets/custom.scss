@@ -1,2 +1,23 @@
+$light-grey: #fafafa;
+$grey: #eee;
+
 
 .spacer { margin-top: 50px; }
+
+
+.post, .comments {
+  padding: 10px;
+  border: $grey 1px solid;
+
+}
+
+.comments {
+  background: $light-grey;
+
+}
+
+.slim {
+   padding: 3px;
+   margin: 3px;
+   color: $grey
+ }
