@@ -26,7 +26,13 @@
 
       <hr>
       <div>
-        <i class="glyphicon glyphicon-thumbs-up"></i> Lubie to!
+
+        <%= form_for @like do |f| -%>
+          <%= f.hidden_field :author_id, value: current_user.id %>
+          <%= f.hidden_field :parent_id, value: p.id %>
+          <%= f.submit 'Lubie to', class: 'btn-primary' %>
+        <% end %>
+
         <i class="glyphicon glyphicon-envelope"></i> Skomentuj
       </div>
   </div>
