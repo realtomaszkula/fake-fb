@@ -1,9 +1,22 @@
 <h1><%= @user.name %></h1>
 
-<ul>
-  <li> Email: <%= @user.email %></li>
-  <li> Friends: <%= @user.accepted_friendships.size %></li>
-  <% unless @user == current_user %>
-    <li> <%= render partial: 'shared/add_friend', locals: { user: @user }  %> </li>
-  <% end -%>
-</ul>
+<div class="col-sm-4">
+  <ul>
+    <li> Email: <%= @user.email %></li>
+    <li> Friends: <%= @user.accepted_friendships.size %></li>
+    <% unless @user == current_user %>
+      <li> <%= render partial: 'shared/add_friend', locals: { user: @user }  %> </li>
+    <% end -%>
+  </ul>
+</div>
+
+<div class="col-sm-6">
+<%= form_for @post, class: 'form-control' do |f| -%>
+
+  <%= f.text_area :content , placeholder: "O czym teraz myslisz?", class: "form-control", rows: 5 %>
+  <%= f.hidden_field :author_id, :value => current_user.id %>
+  <div class="text-right">
+    <%= f.submit 'Opublikuj', class: 'btn btn-primary' %>
+  </div>
+<% end -%>
+</div>
