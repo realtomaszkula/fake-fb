@@ -1,0 +1,57 @@
+<%= render partial: 'shared/post_form', locals: { user: @user } %>
+  <% @user.wall_posts.reverse.each_with_index do |p, i| %>
+  <div class="spacer"></div>
+
+  <div class='post'>
+      <p class="blue"><strong><%= link_to p.author.name , user_path(p.author) %></strong></p>
+      <hr>
+      <p><%= p.content %></p>
+
+      <hr>
+        <ul class="list-inline">
+          <li>
+            <%= form_for @like, method: like_or_dislike(p, current_user.id) do |f| -%>
+              <%= f.hidden_field :author_id, value: current_user.id %>
+              <%= f.hidden_field :parent_id, value: p.id %>
+              <%= button_tag class: 'btn-primary' do %>
+                <i class="glyphicon glyphicon-thumbs-up"></i> Lubie to!
+              <% end %>
+
+            <% end %>
+          </li>
+          <li>
+            <button class="btn-primary" data-toggle="collapse" data-target="#demo<%= i %>">
+              <i class="glyphicon glyphicon-envelope"></i> Skomentuj
+            </button>
+          </li>
+  </div>
+
+
+
+      <% l = p.likes %>
+      <% if l.size > 0 %>
+      <div class="comments">
+        <p class="blue">
+          <i class="glyphicon glyphicon-thumbs-up"></i>
+            <%= link_to l[0].author.name, user_path(l[0].author) if l.size > 0 %>
+            <%= link_to l[1].author.name, user_path(l[1].author) if l.size > 1 %>
+            <%= "i #{l.size - 2}  innych uzytkownikow." if l.size > 2 %>
+        </p>
+      </div>
+      <% end %>
+
+
+    <% if p.comments.size > 0 %>
+    <div class="comments">
+      <% p.comments.each do |c| %>
+        <p><strong class="blue">
+          <%= link_to c.author.name, user_path(c.author) %></strong> <%= c.content %>
+        </p>
+      <% end %>
+    </div>
+    <% end %>
+
+  <div id="demo<%= i %>" class="collapse">
+        <%= render partial: 'shared/comment_form', locals: { p: p } %>
+  </div>
+  <% end %>

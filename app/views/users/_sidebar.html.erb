@@ -1,0 +1,7 @@
+  <ul>
+    <li> Email: <%= @user.email %></li>
+    <li> Friends: <%= @user.accepted_friendships.size %></li>
+    <% unless @user == current_user %>
+      <li> <%= render partial: 'shared/add_friend', locals: { user: @user }  %> </li>
+    <% end -%>
+  </ul>
