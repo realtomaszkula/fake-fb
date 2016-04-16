@@ -9,4 +9,9 @@ module ApplicationHelper
     end
   end
 
+
+  def common_friends(user, current_user)
+    user.accepted_friendships(false) && current_user.accepted_friendships(false)
+  end
+
 end

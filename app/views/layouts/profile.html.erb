@@ -1,0 +1,28 @@
+<%= content_for :content do %>
+  <div class="row"><%= image_tag avatar_url(@user), height: '120', width: '120' %><%= @user.name %></div>
+
+  <div class="spacer"></div>
+  <ul class="nav nav-tabs">
+    <li role="presentation">
+      <%= link_to "Os czasu", user_path(@user) %>
+    </li>
+    <li role="presentation">
+      <%= link_to "Friends", friends_user_path(@user) %>
+    </li>
+  </ul>
+
+  <div class="spacer"></div>
+  <%= yield %>
+<% end %>
+
+<%= render template: 'layouts/application' %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var url = window.location;
+        $('ul.nav a[href="'+ url +'"]').parent().addClass('active');
+        $('ul.nav a').filter(function() {
+             return this.href == url;
+        }).parent().addClass('active');
+    });
+</script>

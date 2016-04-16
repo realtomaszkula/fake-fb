@@ -27,6 +27,11 @@ end
   user2.friendships.create(friend_id: admin.id)
   user5.friendships.create(friend_id: admin.id)
 
+  User.all.each do |u|
+    5..25.times do
+      u.friendships.create(friend_id: rand(1..20))
+    end
+  end
 
   User.take(10).each do |u|
     u.friendships.create(friend_id: admin.id)

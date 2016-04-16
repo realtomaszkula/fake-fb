@@ -15,17 +15,18 @@
 <div class="row">
   <strong>Birthdate:</strong> <%= @user.birthdate %>
 </div>
-<div class="row">
-    <%= form_for @user do |f| -%>
-      <%= f.label 'Avatar url' %>
-      <%= f.text_field :avatar_url %>
-      <%= button_tag class: 'btn-primary' do %>
-        <i class="glyphicon glyphicon-refresh"></i>
-      <% end %>
-    <% end -%>
+<% if @user == current_user %>
+  <div class="row">
+      <%= form_for @user do |f| -%>
+        <%= f.label 'Avatar url' %>
+        <%= f.text_field :avatar_url %>
+        <%= button_tag class: 'btn-primary' do %>
+          <i class="glyphicon glyphicon-refresh"></i>
+        <% end %>
+      <% end -%>
+      </div>
 
-
-</div>
+<% end %>
 
 
 <div class="row">

@@ -1,22 +1,24 @@
 <div class="row">
   <h4>
     <i class="glyphicon glyphicon-user"></i>
-    Friends <%= @user.accepted_friendships.size %>
+    Znajomi <%= @user.accepted_friendships.size %>
+    <%= "(#{common_friends(@user, current_user).size} wspolnych)" unless @user == current_user %>
   </h4>
 </div>
 
-<% @friends.each do |f3| %>
-
-  <div class="row thumbnail-row">
+  <% @friends_in_3s.each do |f3|  %>
+  <div class="row">
     <% f3.each do |f| %>
-      <div class="col-sm-4 ">
-
-        <%= image_tag avatar_url(f.user, "80"), class: 'thumbnails' %>
-        <p class="f-name">
-          <%= link_to f.user.name, user_path(f.user)  %>
-        </p>
-      </div>
+      <% unless f.nil? %>
+        <div class="col-sm-4">
+          <div class="thumbnail">
+            <%= image_tag avatar_url(f.user, "60"), class: 'thumbnails' %>
+              <p class="f-name">
+                <%= link_to f.user.name, user_path(f.user)  %>
+              </p>
+          </div>
+        </div>
       <% end %>
+    <% end %>
   </div>
-
-<% end %>
+  <% end %>

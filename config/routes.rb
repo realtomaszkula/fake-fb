@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   devise_for :users
-  resources :users
+  resources :users do
+    member do
+      get 'friends'
+    end
+  end
+
   resources :posts
 
   post 'likes',   to: 'likes#create'

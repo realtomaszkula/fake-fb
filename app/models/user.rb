@@ -35,6 +35,5 @@ class User < ActiveRecord::Base
     id_only ?  f.pluck(:user_id) : f
   end
 
-
 end
 

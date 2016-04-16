@@ -1,0 +1,6 @@
+<% @friends.each do |f| %>
+  <div class="col-sm-6">
+    <p class="blue"><%= link_to f.user.name, user_path(f.user) %></p>
+    <p class="grey"><%= f.user.accepted_friendships.size %></p>
+  </div>
+<% end %>
