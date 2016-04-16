@@ -13,55 +13,66 @@
 
 <div class="col-sm-6">
   <%= render 'shared/post_form' %>
-  <% @user.posts.reverse.each do |p| %>
-
-
+  <% @user.posts.reverse.each_with_index do |p, i| %>
   <div class="spacer"></div>
 
   <div class='post'>
-
       <p class="blue"><strong><%= p.author.name %></strong></p>
       <hr>
       <p><%= p.content %></p>
 
       <hr>
-      <div>
+        <ul class="list-inline">
+          <li>
+            <%= form_for @like, method: like_or_dislike(p, current_user.id) do |f| -%>
+              <%= f.hidden_field :author_id, value: current_user.id %>
+              <%= f.hidden_field :parent_id, value: p.id %>
+              <%= button_tag class: 'btn-primary' do %>
+                <i class="glyphicon glyphicon-thumbs-up"></i> Lubie to!
+              <% end %>
 
-        <%= form_for @like, method: like_or_dislike(p, current_user.id) do |f| -%>
-          <%= f.hidden_field :author_id, value: current_user.id %>
-          <%= f.hidden_field :parent_id, value: p.id %>
-          <%= f.submit 'Lubie to', class: 'btn-primary' %>
-        <% end %>
-
-        <i class="glyphicon glyphicon-envelope"></i> Skomentuj
-      </div>
+            <% end %>
+          </li>
+          <li>
+            <button class="btn-primary" data-toggle="collapse" data-target="#demo<%= i %>">
+              <i class="glyphicon glyphicon-envelope"></i>Skomentuj
+            </button>
+          </li>
   </div>
 
-  <div class="comments">
-      <p class="blue">
-        <i class="glyphicon glyphicon-thumbs-up"></i>
-        <% l = p.likes %>
-          <%= link_to l[0].author.name, user_path(l[0].author) if l.size > 0 %>
-          <%= link_to l[1].author.name, user_path(l[1].author) if l.size > 1 %>
-          <%= "i #{l.size - 2}  innych uzytkownikow." if l.size > 2 %>
-      </p>
 
-      <hr class="slim"></hr>
 
-    <% p.comments.each do |c| %>
-      <p><strong class="blue">
-        <%= link_to c.author.name, user_path(c.author) %></strong> <%= c.content %>
-      </p>
+      <% l = p.likes %>
+      <% if l.size > 0 %>
+      <div class="comments">
+        <p class="blue">
+          <i class="glyphicon glyphicon-thumbs-up"></i>
+            <%= link_to l[0].author.name, user_path(l[0].author) if l.size > 0 %>
+            <%= link_to l[1].author.name, user_path(l[1].author) if l.size > 1 %>
+            <%= "i #{l.size - 2}  innych uzytkownikow." if l.size > 2 %>
+        </p>
+      </div>
+      <% end %>
 
+
+    <% if p.comments.size > 0 %>
+    <div class="comments">
+      <% p.comments.each do |c| %>
+        <p><strong class="blue">
+          <%= link_to c.author.name, user_path(c.author) %></strong> <%= c.content %>
+        </p>
+      <% end %>
+    </div>
     <% end %>
 
+  <div id="demo<%= i %>" class="collapse">
+    <%= render 'shared/comment_form' %>
   </div>
-
-
-
   <% end %>
-</div>
 
+
+
+</div>
 
 
 

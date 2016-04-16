@@ -4,6 +4,4 @@ module UsersHelper
     post.likes.pluck(:author_id).include?(id) ? 'delete' : 'post'
   end
 
-
-
 end

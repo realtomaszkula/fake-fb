@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
 
-
   post 'likes',   to: 'likes#create'
   delete 'likes', to: 'likes#destroy'
   resources :comments,    only: [:create, :destroy]

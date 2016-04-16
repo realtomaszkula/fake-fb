@@ -1,8 +1,8 @@
 <%= form_for @post, class: 'form-control' do |f| -%>
 
-  <%= f.text_area :content , placeholder: "O czym teraz myslisz?", class: "form-control", rows: 5 %>
+  <%= f.text_area :content , placeholder: "Napisz komentarz", class: "form-control", rows: 2 %>
   <%= f.hidden_field :author_id, :value => current_user.id %>
   <div class="text-right">
-    <%= f.submit 'Skomentuj', class: 'btn btn-primary' %>
+    <%= f.submit 'Opublikuj', class: 'btn btn-primary' %>
   </div>
 <% end -%>
