@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.new
     @like = Like.new
+    @comment = Comment.new
   end
 
   def new

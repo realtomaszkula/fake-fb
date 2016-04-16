@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     friends.pluck(:id)
   end
 
+  def wall_posts
+    Post.where(parent_id: id)
+  end
+
   def sent_friend_requests
     (Friendship.where(user_id: id).pluck(:friend_id) - accepted_friendships)
   end

@@ -12,12 +12,12 @@
 
 
 <div class="col-sm-6">
-  <%= render 'shared/post_form' %>
-  <% @user.posts.reverse.each_with_index do |p, i| %>
+  <%= render partial: 'shared/post_form', locals: { user: @user } %>
+  <% @user.wall_posts.reverse.each_with_index do |p, i| %>
   <div class="spacer"></div>
 
   <div class='post'>
-      <p class="blue"><strong><%= p.author.name %></strong></p>
+      <p class="blue"><strong><%= link_to p.author.name , user_path(p.author) %></strong></p>
       <hr>
       <p><%= p.content %></p>
 
@@ -35,7 +35,7 @@
           </li>
           <li>
             <button class="btn-primary" data-toggle="collapse" data-target="#demo<%= i %>">
-              <i class="glyphicon glyphicon-envelope"></i>Skomentuj
+              <i class="glyphicon glyphicon-envelope"></i> Skomentuj
             </button>
           </li>
   </div>
@@ -66,7 +66,7 @@
     <% end %>
 
   <div id="demo<%= i %>" class="collapse">
-    <%= render 'shared/comment_form' %>
+        <%= render partial: 'shared/comment_form', locals: { p: p } %>
   </div>
   <% end %>
 

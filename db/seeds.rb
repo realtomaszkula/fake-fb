@@ -32,7 +32,15 @@ end
   user5.friendships.create(friend_id: admin.id)
 
   3.times do
-    admin.posts.create(content: Faker::Hacker.say_something_smart )
+    admin.posts.create(content: Faker::Hacker.say_something_smart, parent_id: admin.id )
+  end
+
+  3.times do
+    user2.posts.create(content: Faker::Hacker.say_something_smart, parent_id: admin.id )
+  end
+
+  3.times do
+    user5.posts.create(content: Faker::Hacker.say_something_smart, parent_id: admin.id )
   end
 
   admin.posts.each do |p|

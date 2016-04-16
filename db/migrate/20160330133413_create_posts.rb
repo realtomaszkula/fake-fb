@@ -3,6 +3,8 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :content
       t.integer :author_id, index: true
+      t.integer :parent_id, index: true
+
       t.timestamps null: false
     end
   end
