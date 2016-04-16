@@ -13,7 +13,7 @@
 
 <div class="col-sm-6">
   <%= render 'shared/post_form' %>
-  <% @user.posts.each do |p| %>
+  <% @user.posts.reverse.each do |p| %>
 
 
   <div class="spacer"></div>
@@ -27,7 +27,7 @@
       <hr>
       <div>
 
-        <%= form_for @like do |f| -%>
+        <%= form_for @like, method: like_or_dislike(p, current_user.id) do |f| -%>
           <%= f.hidden_field :author_id, value: current_user.id %>
           <%= f.hidden_field :parent_id, value: p.id %>
           <%= f.submit 'Lubie to', class: 'btn-primary' %>
@@ -41,9 +41,9 @@
       <p class="blue">
         <i class="glyphicon glyphicon-thumbs-up"></i>
         <% l = p.likes %>
-          <%= link_to l[0].author.name, user_path(l[0].author) %>
-          <%= link_to l[1].author.name, user_path(l[1].author) if l.size > 2 %>
-          <%= "i #{l.size - 2}  innych uzytkownikow." if l.size > 3 %>
+          <%= link_to l[0].author.name, user_path(l[0].author) if l.size > 0 %>
+          <%= link_to l[1].author.name, user_path(l[1].author) if l.size > 1 %>
+          <%= "i #{l.size - 2}  innych uzytkownikow." if l.size > 2 %>
       </p>
 
       <hr class="slim"></hr>

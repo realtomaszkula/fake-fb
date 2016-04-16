@@ -5,6 +5,8 @@ class LikesController < ApplicationController
   end
 
   def destroy
+    Like.where(author_id: params[:like][:author_id], parent_id: params[:like][:parent_id]).first.destroy
+    redirect_to :back
   end
 
   private
