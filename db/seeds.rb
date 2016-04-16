@@ -17,19 +17,21 @@ end
     )
 
 
-  user = User.first
-  user2 = User.find(2)
-  user5 = User.find(5)
+  user2 = User.find(11)
+  user5 = User.find(12)
   admin = User.last
 
-  admin.friendships.create(friend_id: user.id)
-  admin.friendships.create(friend_id: 2)
+  admin.friendships.create(friend_id: user2.id)
   admin.friendships.create(friend_id: 3)
 
-
-  user.friendships.create(friend_id: admin.id)
   user2.friendships.create(friend_id: admin.id)
   user5.friendships.create(friend_id: admin.id)
+
+
+  User.take(10).each do |u|
+    u.friendships.create(friend_id: admin.id)
+    admin.friendships.create(friend_id: u.id)
+  end
 
   3.times do
     admin.posts.create(content: Faker::Hacker.say_something_smart, parent_id: admin.id )

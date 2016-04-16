@@ -1,0 +1,22 @@
+<div class="row">
+  <h4>
+    <i class="glyphicon glyphicon-user"></i>
+    Friends <%= @user.accepted_friendships.size %>
+  </h4>
+</div>
+
+<% @friends.each do |f3| %>
+
+  <div class="row thumbnail-row">
+    <% f3.each do |f| %>
+      <div class="col-sm-4 ">
+
+        <%= image_tag avatar_url(f.user, "80"), class: 'thumbnails' %>
+        <p class="f-name">
+          <%= link_to f.user.name, user_path(f.user)  %>
+        </p>
+      </div>
+      <% end %>
+  </div>
+
+<% end %>

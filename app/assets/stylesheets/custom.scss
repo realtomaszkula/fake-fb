@@ -4,6 +4,9 @@ $blue: #2e6da4;
 
 .spacer { margin-top: 50px; }
 
+.short-spacer { margin-top: 25px; }
+
+
 
 .post, .comments {
   padding: 10px;
@@ -26,3 +29,10 @@ $blue: #2e6da4;
   color: $blue
  }
 
+.thumbnail-row {
+  margin-bottom: 5px;
+}
+
+.f-name{
+  font-size: 12px;
+}
