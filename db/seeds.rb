@@ -45,7 +45,7 @@ end
     user5.posts.create(content: Faker::Hacker.say_something_smart, parent_id: admin.id )
   end
 
-  admin.posts.each do |p|
+  admin.wall_posts.each do |p|
     3.times do
       p.comments.create(
         author_id: rand(1..20),

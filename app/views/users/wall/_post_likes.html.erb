@@ -1,0 +1,11 @@
+<% l = p.likes %>
+<% if l.size > 0 %>
+<div class="comments">
+  <p class="blue">
+    <i class="glyphicon glyphicon-thumbs-up"></i>
+      <%= link_to l[0].author.name, user_path(l[0].author) if l.size > 0 %>
+      <%= link_to l[1].author.name, user_path(l[1].author) if l.size > 1 %>
+      <%= "i #{l.size - 2}  innych uzytkownikow." if l.size > 2 %>
+  </p>
+</div>
+<% end %>

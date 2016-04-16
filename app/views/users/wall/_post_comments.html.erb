@@ -1,0 +1,11 @@
+<% if p.comments.size > 0 %>
+<div class="comments">
+  <% p.comments.each do |c| %>
+    <p>
+    <%= image_tag avatar_url(c.author, '32'), height: '32', width: '32' %>
+    <strong class="blue">
+      <%= link_to c.author.name, user_path(c.author) %></strong> <%= c.content %>
+    </p>
+  <% end %>
+</div>
+<% end %>

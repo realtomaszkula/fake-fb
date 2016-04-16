@@ -1,5 +1,5 @@
-<%= form_for @comment, class: 'form-control' do |f| -%>
 
+<%= form_for @comment, class: 'form-control' do |f| -%>
   <%= f.text_area :content , placeholder: "Napisz komentarz", class: "form-control", rows: 2 %>
   <%= f.hidden_field :author_id, :value => current_user.id %>
   <%= f.hidden_field :parent_id, :value => p.id %>

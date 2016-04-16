@@ -1,0 +1,23 @@
+  <div class='post'>
+      <p class="blue"><strong><%= link_to p.author.name , user_path(p.author) %></strong></p>
+      <hr>
+      <p><%= p.content %></p>
+
+      <hr>
+        <ul class="list-inline">
+          <li>
+            <%= form_for @like, method: like_or_dislike(p, current_user.id) do |f| -%>
+              <%= f.hidden_field :author_id, value: current_user.id %>
+              <%= f.hidden_field :parent_id, value: p.id %>
+              <%= button_tag class: 'btn-primary' do %>
+                <i class="glyphicon glyphicon-thumbs-up"></i> Lubie to!
+              <% end %>
+
+            <% end %>
+          </li>
+          <li>
+            <button class="btn-primary" data-toggle="collapse" data-target="#demo<%= i %>">
+              <i class="glyphicon glyphicon-envelope"></i> Skomentuj
+            </button>
+          </li>
+  </div>
