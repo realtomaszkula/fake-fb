@@ -11,7 +11,7 @@ module ApplicationHelper
 
 
   def common_friends(user, current_user)
-    user.accepted_friendships(false) && current_user.accepted_friendships(false)
+    user.accepted_friendships & current_user.accepted_friendships
   end
 
 end

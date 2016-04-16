@@ -28,8 +28,9 @@ end
   user5.friendships.create(friend_id: admin.id)
 
   User.all.each do |u|
-    5..25.times do
-      u.friendships.create(friend_id: rand(1..20))
+      (1..20).to_a.sample(rand(1..20)).each do |id|
+        next if u.id == id
+        u.friendships.create(friend_id: id)
     end
   end
 

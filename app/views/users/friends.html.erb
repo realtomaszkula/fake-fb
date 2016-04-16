@@ -1,6 +1,23 @@
-<% @friends.each do |f| %>
-  <div class="col-sm-6">
-    <p class="blue"><%= link_to f.user.name, user_path(f.user) %></p>
-    <p class="grey"><%= f.user.accepted_friendships.size %></p>
+<% @friends_in_2s.each do |f2| %>
+  <div class="row">
+  <% f2.each do |f| %>
+  <% unless f.nil? %>
+      <div class="col-sm-6">
+        <div class="col-sm-2">
+          <%= image_tag avatar_url(f.user, '80'), height: '80', width: '80' %>
+        </div>
+        <div class="col-sm-4">
+          <p class="blue"><%= link_to f.user.name, user_path(f.user) %></p>
+          <p class="grey">
+            <%= "#{common_friends(f.user, current_user).size} wspolnych znajomych"  %>
+          </p>
+        </div>
+      </div>
+  <% end %>
+  <% end %>
   </div>
+  <div class="spacer"></div>
+
 <% end %>
+
+

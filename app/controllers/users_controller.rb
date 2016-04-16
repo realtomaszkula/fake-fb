@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @friends = @user.accepted_friendships(false)
+    @friends_in_2s = @user.accepted_friendships(false).in_groups_of(2)
   end
 
   def destroy
