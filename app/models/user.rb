@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: 'author_id'
   has_many :likes, foreign_key: 'author_id'
 
+  after_create :send_welcome_email
+
+
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.provider = auth.provider
@@ -45,6 +48,12 @@ class User < ActiveRecord::Base
   def accepted_friendships(id_only = true)
     f = Friendship.where(friend_id: id).where(user_id: current_friends_ids)
     id_only ?  f.pluck(:user_id) : f
+  end
+
+  private
+
+  def send_welcome_email
+    UserNotifier.welcome_email(self).deliver
   end
 
 end
