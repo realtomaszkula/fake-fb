@@ -1,5 +1,8 @@
   <div class='post'>
-      <p class="blue"><strong><%= link_to p.author.name , user_path(p.author) %></strong></p>
+      <p class="blue">
+        <%= image_tag avatar_url(p.author, '32'), height: '32', width: '32' %>
+        <strong><%= link_to p.author.name , user_path(p.author) %></strong>
+      </p>
       <hr>
       <p><%= p.content %></p>
 
@@ -9,7 +12,7 @@
             <%= form_for @like, method: like_or_dislike(p, current_user.id) do |f| -%>
               <%= f.hidden_field :author_id, value: current_user.id %>
               <%= f.hidden_field :parent_id, value: p.id %>
-              <%= button_tag class: 'btn-primary' do %>
+              <%= button_tag class: "btn-#{like_or_dislike_class(p, current_user.id)}" do %>
                 <i class="glyphicon glyphicon-thumbs-up"></i> Lubie to!
               <% end %>
 
