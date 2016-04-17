@@ -1,2 +1,9 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="col-sm-6 col-sm-offset-3">
+  <%= render partial: 'shared/post/form', locals: { user: current_user } %>
+
+  <% @posts.each_with_index do |p, i| %>
+    <%= render partial: 'shared/post/post', locals: { p: p, i: i } %>
+    <div class="short-spacer"></div>
+  <% end %>
+</div>
+

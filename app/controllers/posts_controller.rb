@@ -1,5 +1,14 @@
 class PostsController < ApplicationController
   def index
+
+    friends = current_user.accepted_friendships(false).collect do |f|
+        f.user.posts.take(3)
+      end.flatten
+
+     @posts = friends.sort_by(&:created_at).reverse.take(10)
+     @post = Post.new
+     @like = Like.new
+     @comment = Comment.new
   end
 
   def show
