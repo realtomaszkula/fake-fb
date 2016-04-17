@@ -1,4 +1,3 @@
-
 <%= form_for @comment, class: 'form-control' do |f| -%>
   <%= f.text_area :content , placeholder: "Napisz komentarz", class: "form-control", rows: 2 %>
   <%= f.hidden_field :author_id, :value => current_user.id %>
@@ -8,3 +7,5 @@
     <%= f.submit 'Opublikuj', class: 'btn btn-primary' %>
   </div>
 <% end -%>
+
+

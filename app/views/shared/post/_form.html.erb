@@ -1,10 +1,16 @@
-<%= form_for @post, class: 'form-control' do |f| -%>
+<%= form_for @post, :html => { :multipart => true }, class: 'form-control' do |f| -%>
 
   <%= f.text_area :content , placeholder: "O czym teraz myslisz?", class: "form-control", rows: 5 %>
   <%= f.hidden_field :author_id, :value => current_user.id %>
   <%= f.hidden_field :parent_id, :value => user.id %>
 
-  <div class="text-right">
-    <%= f.submit 'Opublikuj', class: 'btn btn-primary' %>
-  </div>
+
+
+  <ul class='list-inline'>
+    <li>
+      <%= f.file_field :photo %>
+    </li>
+    <li class='pull-right'><%= f.submit 'Opublikuj', class: 'btn btn-primary' %></li>
+  </ul>
+
 <% end -%>

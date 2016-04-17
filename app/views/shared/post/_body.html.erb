@@ -5,6 +5,7 @@
       </p>
       <hr>
       <p><%= p.content %></p>
+      <p><%= image_tag(p.photo) if p.photo.exists? %></p>
 
       <hr>
         <ul class="list-inline">
