@@ -6,6 +6,10 @@ class CreateUsers < ActiveRecord::Migration
       t.date :birthdate
       t.string :avatar_url
 
+      t.string :uid
+      t.string :provider
+
+
       t.timestamps null: false
     end
   end

@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+          :omniauthable, :omniauth_providers => [:facebook]
   has_many :friendships
   has_many :friends, :through => :friendships
   # has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => 'friend_id'
@@ -12,6 +13,17 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: 'author_id'
   has_many :likes, foreign_key: 'author_id'
 
+  def self.from_omniauth(auth)
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.name = auth.info.name
+        user.email = auth.info.email
+        user.avatar_url = auth.info.image
+        user.gender = auth.extra.gender
+        user.password = Devise.friendly_token[0,20]
+      end
+  end
 
   def current_friends_ids
     friends.pluck(:id)
