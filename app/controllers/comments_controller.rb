@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  after_action :create_nofitication, only: [:create]
+
   def create
     @comment = Comment.new(comment_params)
     @comment.save
@@ -12,6 +14,13 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content, :parent_id, :author_id)
+  end
+
+  def create_nofitication
+    giver_id     = current_user.id
+    receiver_id  = @comment.parent.author.id
+    model     = @comment
+    super(giver_id, receiver_id, model)
   end
 
 end

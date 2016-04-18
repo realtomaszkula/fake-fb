@@ -1,5 +1,7 @@
 class LikesController < ApplicationController
   before_action :load_likable
+  after_action :create_nofitication, only: [:create]
+
 
   def create
     @like = @likable.likes.create(like_params)
@@ -21,4 +23,12 @@ class LikesController < ApplicationController
   def like_params
     params.require(:like).permit(:author_id)
   end
+
+  def create_nofitication
+    giver_id     = current_user.id
+    receiver_id  = @likable.author.id
+    model     = @like
+    super(giver_id, receiver_id, model)
+  end
+
 end

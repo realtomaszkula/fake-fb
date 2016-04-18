@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  after_action :create_nofitication, only: [:create]
+
   def index
     friends = current_user.accepted_friendships(false).collect do |f|
         f.user.posts.take(3)
@@ -26,4 +28,10 @@ class PostsController < ApplicationController
     params.require(:post).permit(:author_id, :parent_id, :content, :photo)
   end
 
+  def create_nofitication
+    giver_id     = current_user.id
+    receiver_id  = params[:post][:parent_id]
+    model     = @post
+    super(giver_id, receiver_id, model)
+  end
 end

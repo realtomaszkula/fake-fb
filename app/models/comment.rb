@@ -4,5 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :author, :class_name => 'User'
   belongs_to :parent, :class_name => 'Post'
   has_many :likes, :as => :likable
+  has_many :notifications, :as => :notifiable
+
 
 end

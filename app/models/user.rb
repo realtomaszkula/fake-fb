@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: 'author_id'
   has_many :likes, foreign_key: 'author_id'
 
+  has_many :sent_notifications,     class_name: 'Notification',   foreign_key: 'giver_id'
+  has_many :received_notifications, class_name: 'Notification',   foreign_key: 'receiver_id'
+
+
   #after_create :send_welcome_email
 
 
