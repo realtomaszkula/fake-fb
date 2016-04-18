@@ -6,6 +6,20 @@
     <strong class="blue">
       <%= link_to c.author.name, user_path(c.author) %></strong> <%= c.content %>
     </p>
+    <ul class='list-inline'>
+      <li>
+        <%= render partial: 'likes/form', locals: { likable: c, btn_class: 'btn-link', no_icon: true } %>
+      </li>
+      <li>
+        <i class="glyphicon glyphicon-thumbs-up"></i> <%= c.likes.size %>
+      </li>
+      <li>
+        <%= time_ago_in_words(c.created_at) %>
+      </li>
+
+    </ul>
+
+
   <% end %>
 </div>
 <% end %>

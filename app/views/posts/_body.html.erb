@@ -1,7 +1,8 @@
   <div class='post'>
-      <p class="blue">
+      <p >
         <%= image_tag avatar_url(p.author, '32'), height: '32', width: '32' %>
-        <strong><%= link_to p.author.name , user_path(p.author) %></strong>
+        <strong class="blue"><%= link_to p.author.name , user_path(p.author) %></strong>
+        <%= time_ago_in_words(p.created_at) %>
       </p>
       <hr>
       <p><%= p.content %></p>
@@ -10,7 +11,7 @@
       <hr>
         <ul class="list-inline">
           <li>
-              <%= render partial: 'likes/form', locals: { likable: p } %>
+              <%= render partial: 'likes/form', locals: { likable: p, no_icon: false } %>
           </li>
           <li>
             <button class="btn-primary" data-toggle="collapse" data-target="#demo<%= i %>">
