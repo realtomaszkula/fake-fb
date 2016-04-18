@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 20160417220230) do
 
   create_table "likes", force: :cascade do |t|
     t.integer  "author_id"
-    t.integer  "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "likable_id"
+    t.string   "likable_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "likes", ["author_id"], name: "index_likes_on_author_id", using: :btree
-  add_index "likes", ["parent_id"], name: "index_likes_on_parent_id", using: :btree
+  add_index "likes", ["likable_id", "likable_type"], name: "index_likes_on_likable_id_and_likable_type", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "content"
@@ -81,10 +81,6 @@ ActiveRecord::Schema.define(version: 20160417220230) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

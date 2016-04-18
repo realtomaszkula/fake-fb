@@ -1,4 +1,4 @@
 class Like < ActiveRecord::Base
   belongs_to :author, :class_name => 'User'
-  belongs_to :parent, :class_name => 'Post'
+  belongs_to :likable, :polymorphic => true
 end

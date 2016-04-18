@@ -45,17 +45,13 @@ end
     user5.posts.create(content: Faker::Hacker.say_something_smart, parent_id: admin.id )
   end
 
-  users = User.take(20)
-
-  users.each do |u|
+  User.take(20).each do |u|
     10.times { u.posts.create(content: Faker::Hacker.say_something_smart, parent_id: rand(1..20)) }
   end
 
-  users.each do |u|
-    20.times do
-      u.likes.create(parent_id: rand(1..200))
-      u.comments.create(content: Faker::Hacker.say_something_smart, parent_id: rand(1..200))
-    end
+  Post.all.each do |p|
+    rand(1..12).times { p.likes.create(author_id: rand(1..21)) }
+    rand(1..5).times { p.comments.create(content: Faker::Hacker.say_something_smart, author_id: rand(1..21)) }
   end
 
   admin.wall_posts.each do |p|

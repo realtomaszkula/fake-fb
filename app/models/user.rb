@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :comments, foreign_key: 'author_id'
   has_many :likes, foreign_key: 'author_id'
 
-  after_create :send_welcome_email
+  #after_create :send_welcome_email
 
 
   def self.from_omniauth(auth)
