@@ -10,11 +10,11 @@
 
 <% else %>
 
-  <%= form_for [likable, @like],  url: post_like_path(likable, find_like(likable, current_user.id)), method: 'delete' do |f| %>
-    <%= button_tag class: "btn-primary" do %>
-      <i class="glyphicon glyphicon-thumbs-up"></i> Nie lubie!
-    <% end %>
+<%= form_for [likable, find_like(likable, current_user.id)], method: 'delete' do |f| %>
+  <%= button_tag class: "btn-default" do %>
+    <i class="glyphicon glyphicon-thumbs-up"></i> Nie lubie!
   <% end %>
+<% end %>
 
 
 
