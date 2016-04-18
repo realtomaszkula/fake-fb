@@ -1,6 +1,6 @@
-<%= render partial: 'shared/post/post_form', locals: { user: @user } %>
+<%= render partial: 'posts/form', locals: { user: @user } %>
   <% @user.wall_posts.each_with_index do |p, i| %>
     <div class="spacer"></div>
 
-<%= render partial: 'shared/post/post', locals: { p: p, i: i } %>
+<%= render partial: 'posts/post', locals: { p: p, i: i } %>
 <% end %>
