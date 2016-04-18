@@ -9,11 +9,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts
-
-  post 'likes',   to: 'likes#create'
-  delete 'likes', to: 'likes#destroy'
-  resources :comments,    only: [:create, :destroy]
   resources :friendships, only: [:create, :destroy]
+
+  resources :posts do
+    resources :likes, only:  [:create, :destroy]
+  end
+
+
+  resources :comments, only: [:create, :destroy]
+
 
 end

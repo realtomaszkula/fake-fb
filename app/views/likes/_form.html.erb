@@ -1,0 +1,28 @@
+<%  unless already_liked?(likable, current_user.id) %>
+
+
+  <%= form_for [likable, @like] do |f| %>
+    <%= f.hidden_field :author_id, value: current_user.id %>
+    <%= button_tag class: "btn-primary" do %>
+      <i class="glyphicon glyphicon-thumbs-up"></i> Lubie to!
+    <% end %>
+  <% end %>
+
+<% else %>
+
+  <%= form_for [likable, @like],  url: post_like_path(likable, find_like(likable, current_user.id)), method: 'delete' do |f| %>
+    <%= button_tag class: "btn-primary" do %>
+      <i class="glyphicon glyphicon-thumbs-up"></i> Nie lubie!
+    <% end %>
+  <% end %>
+
+
+
+<% end %>
+
+
+
+
+
+
+

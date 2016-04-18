@@ -2,5 +2,5 @@
 <%= render partial: 'shared/post/likes',    locals: { p: p, i: i  } %>
 <%= render partial: 'shared/post/comments', locals: { p: p, i: i  } %>
 <div id="demo<%= i %>" class="collapse">
-  <%= render partial: 'shared/comment_form', locals: { p: p } %>
+  <%= render partial: 'shared/post/comment_form', locals: { p: p } %>
 </div>

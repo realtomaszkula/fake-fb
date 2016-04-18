@@ -9,18 +9,10 @@ class UsersController < ApplicationController
 
   def show
     @post = Post.new
-    @like = Like.new
     @comment = Comment.new
+    @like = Like.new
+
     @friends_in_3s = @user.accepted_friendships(false).take(9).in_groups_of(3)
-  end
-
-  def new
-  end
-
-  def create
-  end
-
-  def edit
   end
 
   def update
@@ -35,8 +27,6 @@ class UsersController < ApplicationController
     @friends_in_2s = @user.accepted_friendships(false).in_groups_of(2)
   end
 
-  def destroy
-  end
 
   private
 

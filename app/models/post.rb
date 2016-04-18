@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  default_scope { order('created_at DESC') }
+
   belongs_to :author, :class_name => 'User'
   belongs_to :parent, :class_name => 'Profile'
   has_many :comments, foreign_key: 'parent_id'
@@ -8,5 +10,7 @@ class Post < ActiveRecord::Base
   validates_attachment_content_type :photo, content_type: /\Aimage/
   validates_attachment_file_name :photo, matches: [/png\Z/, /jpe?g\Z/]
   validates_attachment_size :photo , less_than: 1.megabytes
+
+
 
 end

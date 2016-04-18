@@ -1,11 +1,11 @@
 module UsersHelper
 
-  def like_or_dislike(post, id)
-    post.likes.pluck(:author_id).include?(id) ? 'delete' : 'post'
+  def already_liked?(likable, user_id)
+    likable.likes.exists?(:author_id => user_id)
   end
 
-  def like_or_dislike_class(post, id)
-    post.likes.pluck(:author_id).include?(id) ? 'default' : 'primary'
+  def find_like(likable, user_id)
+    likable.likes.find_by(:author_id => user_id).id
   end
 
 end
