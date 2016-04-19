@@ -2,7 +2,7 @@
       <p >
         <%= image_tag avatar_url(p.author, '32'), height: '32', width: '32' %>
         <strong class="blue"><%= link_to p.author.name , user_path(p.author) %></strong>
-        <%= time_ago_in_words(p.created_at) %>
+        <span class="grey"><%= time_ago_in_words(p.created_at) %></span>
       </p>
       <hr>
       <p><%= p.content %></p>

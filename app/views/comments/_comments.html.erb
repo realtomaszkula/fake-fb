@@ -10,11 +10,13 @@
       <li>
         <%= render partial: 'likes/form', locals: { likable: c, btn_class: 'btn-link', no_icon: true } %>
       </li>
+      <% if c.likes.size > 0 %>
       <li>
-        <i class="glyphicon glyphicon-thumbs-up"></i> <%= c.likes.size %>
+        <span class='blue'><i class="glyphicon glyphicon-thumbs-up"></i> <%= c.likes.size %></span>
       </li>
+      <% end %>
       <li>
-        <%= time_ago_in_words(c.created_at) %>
+        <span class="grey"><%= time_ago_in_words(c.created_at) %></span>
       </li>
 
     </ul>
