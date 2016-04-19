@@ -1,8 +1,9 @@
 <div class="col-sm-6 col-sm-offset-3">
+  <div class="spacer"></div>
   <%= render partial: 'form', locals: { user: current_user } %>
-
+  <div class="spacer"></div>
   <% @posts.each_with_index do |p, i| %>
-    <%= render partial: 'post', locals: { p: p, i: i } %>
+    <%= render partial: 'post', locals: { p: p } %>
     <div class="short-spacer"></div>
   <% end %>
 </div>

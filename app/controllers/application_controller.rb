@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 
   def create_nofitication(giver_id, receiver_id, model)
-    model.notifications.create(receiver_id: receiver_id, giver_id: giver_id)
+      model.notifications.create(receiver_id: receiver_id, giver_id: giver_id)
   end
 
 end

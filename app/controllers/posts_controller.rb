@@ -12,6 +12,12 @@ class PostsController < ApplicationController
      @comment = Comment.new
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @like = Like.new
+    @comment = Comment.new
+  end
+
   def create
     @post = Post.new(post_params)
     if @post.save
@@ -31,6 +37,7 @@ class PostsController < ApplicationController
   def create_nofitication
     giver_id     = current_user.id
     receiver_id  = params[:post][:parent_id]
+    return if giver_id == receiver_id.to_i
     model     = @post
     super(giver_id, receiver_id, model)
   end

@@ -19,6 +19,8 @@ class CommentsController < ApplicationController
   def create_nofitication
     giver_id     = current_user.id
     receiver_id  = @comment.parent.author.id
+    return if giver_id == receiver_id.to_i
+
     model     = @comment
     super(giver_id, receiver_id, model)
   end

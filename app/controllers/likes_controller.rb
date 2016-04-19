@@ -27,6 +27,7 @@ class LikesController < ApplicationController
   def create_nofitication
     giver_id     = current_user.id
     receiver_id  = @likable.author.id
+    return if giver_id == receiver_id.to_i
     model     = @like
     super(giver_id, receiver_id, model)
   end

@@ -27,25 +27,43 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-user"></i></a>
                       <ul class="dropdown-menu">
-                          <%  current_user.received_friend_requests(false).each do |friend_req| %>
-                          <li>
-                            <li><%= friend_req.user.name %></li>
-                            <ul class="list-inline">
-                              <li><%= link_to 'Accept', friendships_path(friend_id: friend_req.user_id), :method => :post %> </li>
-                              <li><%= link_to 'Decline', friendship_path(id: friend_req.user_id, decline_only: true), :method => :delete %> </li>
-                            </ul>
-                          </li>
-                          <% end %>
+                      <% if current_user.received_friend_requests(false).empty? %>
+                       <li><p>No new friend requests.</p> </li>
+                      <% else %>
+                        <% current_user.received_friend_requests(false).each do |friend_req| %>
+                            <li>
+                              <li><%= friend_req.user.name %></li>
+                              <ul class="list-inline">
+                                <li><%= link_to 'Accept', friendships_path(friend_id: friend_req.user_id), :method => :post %> </li>
+                                <li><%= link_to 'Decline', friendship_path(id: friend_req.user_id, decline_only: true), :method => :delete %> </li>
+                              </ul>
+                            </li>
+                        <% end%>
+                      <% end %>
                       </ul>
             </li>
             <li>
               <%= link_to '#' do %>
                 <i class="glyphicon glyphicon-envelope"></i>
               <% end %>
-            </li>            <li>
-              <%= link_to '#' do %>
-                <i class="glyphicon glyphicon-globe"></i>
-              <% end %>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="glyphicon glyphicon-globe"></i></a>
+                <ul class="dropdown-menu" id="notifications">
+                <% current_user.received_notifications.take(5).each do |n| %>
+                  <li class='notification'>
+                    <ul class="list-inline">
+                      <li>
+                      <%= image_tag avatar_url(n.giver, 32), height: '32', width: '32' %>
+                      </li>
+                      <li>
+                        <%= link_to notification_msg(n), post_path(notification_post_id(n)) %>
+                      </li>
+                    </ul>
+                  </li>
+                <% end %>
+                </ul>
             </li>
 
             <li class="dropdown">

@@ -1,7 +1,7 @@
 <% ['/posts/body', 'likes/bar', 'comments/comments'].each do |path| %>
-  <%= render partial: path ,locals: { p: p, i: i  } %>
+  <%= render partial: path ,locals: { p: p } %>
 <% end %>
 
-<div id="demo<%= i %>" class="collapse">
+<div id="demo<%= p.id %>" class="collapse">
   <%= render partial: 'comments/comment_form', locals: { p: p } %>
 </div>
